@@ -26,6 +26,7 @@ const displayCharacters = (characters) => {
             return `
             <li class="character">
                 <h2>${character.name} | ${character.actor}</h2>
+                <p><b>Alternate names: </b>${character.alternate_names}</p>
                 <p><b>House: </b>${character.house}</p>
                 <p><b>Species: </b>${character.species} | <b>Gender: </b>${character.gender}</p>
                 <p><b>Date of birth: </b>${character.dateOfBirth}</p>
