@@ -1,211 +1,121 @@
+/* app.css */
+:root {
+    /* Imagens de fundo para cada casa (Links de exemplo do Unsplash) */
+    --bg-default: url('./img/hogwarts.mp4');
+    --bg-gryffindor: url('./img/gryffondor.mp4'); /* Fogo/Vermelho */
+    --bg-slytherin: url('./img/slytherin.mp4'); /* Escuro/Verde */
+    --bg-ravenclaw: url('./img/ravenclaw.mp4'); /* Biblioteca/Azul */
+    --bg-hufflepuff: url('./img/hufflepuff.mp4'); /* Natureza/Amarelo */
+}
+
 body {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(180deg, #0b1229 0%, #0d1739 45%, #0b0f22 100%);
+    background-color: #0b0f22;
     min-height: 100vh;
     position: relative;
     color: #f8f9fa;
+    overflow-x: hidden;
 }
 
-.title-font {
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.5px;
-}
-
-.text-gold {
-    color: #e7c97a !important;
-}
-
-.bg-night::before {
-    content: '';
+/* O Elemento de Fundo Dinâmico */
+#dynamic-bg {
     position: fixed;
     inset: 0;
-    background: url('https://images.unsplash.com/photo-1508055916863-95e5fd695f22?auto=format&fit=crop&w=1600&q=80')
-            center/cover no-repeat;
-    opacity: 0.18;
+    background-image: var(--bg-default);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.3; /* Um pouco escuro para ler o texto */
     z-index: -2;
+    transition: background-image 0.5s ease-in-out; /* Transição suave */
 }
 
+/* Overlay Mágico */
 .magic-overlay {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(circle at 20% 20%, rgba(231, 201, 122, 0.08), transparent 25%),
-        radial-gradient(circle at 80% 10%, rgba(148, 197, 255, 0.08), transparent 25%),
-        radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.06), transparent 30%);
+    background: radial-gradient(circle at 50% 50%, transparent 0%, #0b0f22 90%);
     z-index: -1;
 }
 
-.hogwarts-crest {
-    width: 120px;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+.title-font {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
 }
 
-.container {
-    max-width: 1200px;
+.text-gold {
+    color: #e7c97a !important;
+    text-shadow: 0 0 10px rgba(231, 201, 122, 0.3);
 }
 
-.glass-card {
-    background: rgba(12, 20, 49, 0.65);
-    border-radius: 18px;
-    border: 1px solid rgba(231, 201, 122, 0.2);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(14px) saturate(120%);
-}
-
+/* Cards */
 .character-card {
-    background: linear-gradient(150deg, rgba(19, 27, 58, 0.78), rgba(13, 19, 39, 0.82));
-    border-radius: 18px;
-    border: 1px solid rgba(231, 201, 122, 0.15);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(16px) saturate(125%);
-    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    background: rgba(13, 19, 39, 0.75);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
 }
 
-.character-card::after {
-    content: '';
-    position: absolute;
-    inset: -40% -20% auto;
-    height: 80%;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.05), rgba(231, 201, 122, 0.08), transparent 65%);
-    transform: rotate(8deg);
-    pointer-events: none;
+/* Efeito Hover Geral */
+.character-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    z-index: 10;
 }
 
-.character-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.6);
-    border-color: rgba(231, 201, 122, 0.45);
+/* Cores e Brilhos Específicos das Casas no HOVER */
+.character-card.house-gryffindor:hover {
+    border-color: #740001;
+    box-shadow: 0 0 25px rgba(116, 0, 1, 0.6);
 }
+
+.character-card.house-slytherin:hover {
+    border-color: #1a472a;
+    box-shadow: 0 0 25px rgba(26, 71, 42, 0.6);
+}
+
+.character-card.house-ravenclaw:hover {
+    border-color: #0e1a40;
+    box-shadow: 0 0 25px rgba(14, 26, 64, 0.6);
+}
+
+.character-card.house-hufflepuff:hover {
+    border-color: #ecb939;
+    box-shadow: 0 0 25px rgba(236, 185, 57, 0.6);
+}
+
+/* Restante do layout */
+.container { max-width: 1200px; }
+.hogwarts-crest { width: 140px; filter: drop-shadow(0 0 15px rgba(231, 201, 122, 0.4)); }
 
 .card-header {
-    background: linear-gradient(90deg, rgba(231, 201, 122, 0.08), rgba(231, 201, 122, 0));
-    border-bottom: 1px solid rgba(231, 201, 122, 0.18);
-    position: relative;
-}
-
-.card-header::after {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(231, 201, 122, 0), rgba(231, 201, 122, 0.6), rgba(231, 201, 122, 0));
-    opacity: 0.65;
-}
-
-.portrait-wrap {
-    width: 110px;
-    height: 110px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(231, 201, 122, 0.15);
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
 }
 
 .character-image {
     width: 100%;
-    height: 100%;
+    height: 120px;
     object-fit: cover;
-    border-radius: 10px;
-    background: linear-gradient(120deg, rgba(231, 201, 122, 0.1), rgba(255, 255, 255, 0));
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .house-pill {
-    background: #0f152f;
-    border: 1px solid rgba(231, 201, 122, 0.35);
-    color: #e7c97a;
-    font-weight: 700;
-    padding: 0.4rem 0.75rem;
-    border-radius: 999px;
-}
-
-.house-gryffindor {
-    border-color: rgba(201, 43, 43, 0.4);
-    box-shadow: 0 12px 24px rgba(201, 43, 43, 0.22);
-}
-
-.house-hufflepuff {
-    border-color: rgba(225, 181, 60, 0.4);
-    box-shadow: 0 12px 24px rgba(225, 181, 60, 0.22);
-}
-
-.house-ravenclaw {
-    border-color: rgba(49, 101, 167, 0.45);
-    box-shadow: 0 12px 24px rgba(49, 101, 167, 0.22);
-}
-
-.house-slytherin {
-    border-color: rgba(46, 125, 81, 0.45);
-    box-shadow: 0 12px 24px rgba(46, 125, 81, 0.22);
-}
-
-.character-card.house-gryffindor:hover {
-    background: linear-gradient(150deg, rgba(201, 43, 43, 0.2), rgba(19, 27, 58, 0.9));
-    box-shadow: 0 26px 60px rgba(201, 43, 43, 0.35);
-}
-
-.character-card.house-hufflepuff:hover {
-    background: linear-gradient(150deg, rgba(225, 181, 60, 0.2), rgba(19, 27, 58, 0.9));
-    box-shadow: 0 26px 60px rgba(225, 181, 60, 0.35);
-}
-
-.character-card.house-ravenclaw:hover {
-    background: linear-gradient(150deg, rgba(49, 101, 167, 0.22), rgba(19, 27, 58, 0.9));
-    box-shadow: 0 26px 60px rgba(49, 101, 167, 0.35);
-}
-
-.character-card.house-slytherin:hover {
-    background: linear-gradient(150deg, rgba(46, 125, 81, 0.22), rgba(19, 27, 58, 0.9));
-    box-shadow: 0 26px 60px rgba(46, 125, 81, 0.35);
-}
-
-.house-pill::before {
-    content: '🏰 ';
-}
-
-.bg-gold {
-    background-color: #e7c97a !important;
-}
-
-.opacity-85 {
-    opacity: 0.85;
-}
-
-#searchBar::placeholder {
-    color: rgba(248, 249, 250, 0.6);
-}
-
-#searchBar:focus {
-    box-shadow: 0 0 0 0.2rem rgba(231, 201, 122, 0.35);
-}
-
-#charactersList p {
-    margin: 0;
-}
-
-.character-card::before {
-    content: '';
-    position: absolute;
-    inset: 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(231, 201, 122, 0.08);
-    pointer-events: none;
-}
-
-.character-card .card-body {
-    background: radial-gradient(circle at 30% 20%, rgba(231, 201, 122, 0.05), transparent 40%),
-        radial-gradient(circle at 80% 0%, rgba(82, 137, 223, 0.06), transparent 35%);
-    border-radius: 0 0 18px 18px;
-}
-
-.card-title {
+    padding: 0.3em 0.8em;
+    border-radius: 20px;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-.actor {
-    font-size: 0.9rem;
-}
+/* Cores das Badges das Casas */
+.house-gryffindor .house-pill { background: rgba(116, 0, 1, 0.2); color: #ff8b8b; border: 1px solid #740001; }
+.house-slytherin .house-pill { background: rgba(26, 71, 42, 0.2); color: #8bffaa; border: 1px solid #1a472a; }
+.house-ravenclaw .house-pill { background: rgba(14, 26, 64, 0.2); color: #8bdaff; border: 1px solid #0e1a40; }
+.house-hufflepuff .house-pill { background: rgba(236, 185, 57, 0.2); color: #ffeebb; border: 1px solid #ecb939; }
