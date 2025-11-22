@@ -95,7 +95,7 @@ $characters = fetchCharacters(API_ENDPOINT);
                 </div>
             </div>
 
-            <div id="charactersList" class="row g-4"></div>
+            <div id="charactersList" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4"></div>
 
             <template id="characterCardTemplate">
                 <div class="col-12 col-md-6 col-xl-4">

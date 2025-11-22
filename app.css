@@ -40,6 +40,10 @@ body {
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
 }
 
+.container {
+    max-width: 1200px;
+}
+
 .glass-card {
     background: rgba(12, 20, 49, 0.8);
     border-radius: 18px;
@@ -53,6 +57,7 @@ body {
     border: 1px solid rgba(231, 201, 122, 0.15);
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.3s ease;
+    position: relative;
 }
 
 .character-card:hover {
@@ -64,6 +69,16 @@ body {
 .card-header {
     background: linear-gradient(90deg, rgba(231, 201, 122, 0.08), rgba(231, 201, 122, 0));
     border-bottom: 1px solid rgba(231, 201, 122, 0.18);
+    position: relative;
+}
+
+.card-header::after {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(231, 201, 122, 0), rgba(231, 201, 122, 0.6), rgba(231, 201, 122, 0));
+    opacity: 0.65;
 }
 
 .portrait-wrap {
@@ -114,6 +129,10 @@ body {
     box-shadow: 0 8px 18px rgba(46, 125, 81, 0.2);
 }
 
+.house-pill::before {
+    content: '🏰 ';
+}
+
 .bg-gold {
     background-color: #e7c97a !important;
 }
@@ -132,4 +151,28 @@ body {
 
 #charactersList p {
     margin: 0;
+}
+
+.character-card::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(231, 201, 122, 0.08);
+    pointer-events: none;
+}
+
+.character-card .card-body {
+    background: radial-gradient(circle at 30% 20%, rgba(231, 201, 122, 0.05), transparent 40%),
+        radial-gradient(circle at 80% 0%, rgba(82, 137, 223, 0.06), transparent 35%);
+    border-radius: 0 0 18px 18px;
+}
+
+.card-title {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.actor {
+    font-size: 0.9rem;
 }
