@@ -95,10 +95,10 @@ $characters = fetchCharacters(API_ENDPOINT);
                 </div>
             </div>
 
-            <div id="charactersList" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4"></div>
+            <div id="charactersList" class="row row-cols-1 row-cols-lg-3 g-4"></div>
 
             <template id="characterCardTemplate">
-                <div class="col-12 col-md-6 col-xl-4">
+                <div class="col-12 col-lg-4">
                     <div class="card h-100 shadow-lg character-card border-0">
                         <div class="card-header d-flex align-items-center justify-content-between border-0">
                             <div>
