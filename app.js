@@ -2,18 +2,37 @@
     const charactersList = document.getElementById('charactersList');
     const searchBar = document.getElementById('searchBar');
     const cardTemplate = document.getElementById('characterCardTemplate');
-    // Pegamos o elemento de fundo
-    const dynamicBg = document.getElementById('dynamic-bg'); 
+    // Elementos de fundo (vídeo dinâmico)
+    const bgVideo = document.getElementById('dynamic-bg-video');
     const characters = Array.isArray(window.hpCharacters) ? window.hpCharacters : [];
 
-    // Mapeamento de Casas para Variáveis CSS
-    const houseBackgrounds = {
-        Gryffindor: 'var(--bg-gryffindor)',
-        Slytherin: 'var(--bg-slytherin)',
-        Ravenclaw: 'var(--bg-ravenclaw)',
-        Hufflepuff: 'var(--bg-hufflepuff)'
+    // Mapeamento de Casas para vídeos (usando variáveis CSS como caminho)
+    const houseVideos = {
+        Gryffindor: getComputedStyle(document.documentElement).getPropertyValue('--vid-gryffindor').trim(),
+        Slytherin: getComputedStyle(document.documentElement).getPropertyValue('--vid-slytherin').trim(),
+        Ravenclaw: getComputedStyle(document.documentElement).getPropertyValue('--vid-ravenclaw').trim(),
+        Hufflepuff: getComputedStyle(document.documentElement).getPropertyValue('--vid-hufflepuff').trim()
     };
-    const defaultBackground = 'var(--bg-default)';
+    const defaultVideo = getComputedStyle(document.documentElement).getPropertyValue('--vid-default').trim();
+
+    const swapVideo = (src) => {
+        if (!bgVideo || !src) return;
+        const current = bgVideo.getAttribute('data-current');
+        if (current === src) return;
+        bgVideo.style.opacity = 0;
+        setTimeout(() => {
+            bgVideo.src = src;
+            bgVideo.setAttribute('data-current', src);
+            bgVideo.load();
+            bgVideo.play().catch(() => {});
+            bgVideo.style.opacity = 1;
+        }, 220);
+    };
+
+    // Inicializa vídeo padrão
+    if (bgVideo) {
+        swapVideo(defaultVideo);
+    }
 
     // ... (funções formatValue e formatWand permanecem iguais) ...
     const formatValue = (value, fallback = 'Não informado') => {
@@ -23,7 +42,7 @@
     
     const formatWand = (wand) => {
          if (!wand) return 'Desconhecida';
-         return [wand.wood, wand.core].filter(Boolean).join(' · ') || 'Detalhes desconhecidos';
+         return [wand.wood, wand.core, wand.length].filter(Boolean).join(' · ') || 'Detalhes desconhecidos';
     };
 
     const houseStyles = {
@@ -65,17 +84,13 @@
         imageElement.src = character.image || 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80';
         imageElement.alt = character.name;
 
-        // --- NOVA MÁGICA DE BACKGROUND ---
-        // Quando o mouse entra no card
+        // Background em vídeo conforme a casa
         cardElement.addEventListener('mouseenter', () => {
-            if (houseBackgrounds[character.house]) {
-                dynamicBg.style.backgroundImage = houseBackgrounds[character.house];
-            }
+            const vid = houseVideos[character.house];
+            if (vid) swapVideo(vid);
         });
-
-        // Quando o mouse sai do card
         cardElement.addEventListener('mouseleave', () => {
-            dynamicBg.style.backgroundImage = defaultBackground;
+            swapVideo(defaultVideo);
         });
 
         return clone;

@@ -61,29 +61,28 @@ $characters = fetchCharacters(API_ENDPOINT);
 
 <body class="bg-night text-light">
     <audio src="./music.mp3" autoplay loop hidden></audio>
-    <div id="dynamic-bg"></div>
+    <div id="dynamic-bg">
+        <video id="dynamic-bg-video" autoplay muted loop playsinline preload="auto" poster="./img/hogwarts-poster.jpg">
+            <source src="./img/hogwarts.mp4" type="video/mp4" />
+        </video>
+    </div>
     <div class="magic-overlay"></div>
-    <div class="container py-5">
-        <div id="charactersList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Hogwartscrest.png/640px-Hogwartscrest.png" alt="Brasão de Hogwarts" class="hogwarts-crest mb-3" />
-        <h1 class="display-5 title-font text-gold">Mural de Personagens</h1>
-        <p class="lead text-light opacity-85">Explore o universo de Hogwarts com filtros rápidos.</p>
-
-        <div class="card shadow border-0 mb-4 glass-card">
-            <div class="card-body">
-                <label for="searchBar" class="form-label fw-semibold">Encantamento de Busca</label>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-text bg-gold text-dark border-0" aria-hidden="true">🔍</span>
-                    <input
-                        type="text"
-                        name="searchBar"
-                        id="searchBar"
-                        class="form-control form-control-lg border-0 bg-transparent text-light"
-                        placeholder="Digite nome, casa ou ator"
-                        autocomplete="off" />
-                </div>
+    <div class="search-bar-top">
+        <div class="container">
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" aria-hidden="true">🔍</span>
+                <input
+                    type="text"
+                    name="searchBar"
+                    id="searchBar"
+                    class="form-control form-control-lg border-0 bg-transparent"
+                    placeholder="Buscar nome, casa ou ator" autocomplete="off" />
             </div>
         </div>
+    </div>
+    <div class="container py-5">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Hogwarts-Crest.png" alt="Brasão de Hogwarts" class="hogwarts-crest mb-3" />
+        <h1 class="display-5 title-font text-gold">Personagens</h1>
 
         <div id="charactersList" class="row row-cols-1 row-cols-lg-3 g-4"></div>
 
@@ -103,15 +102,15 @@ $characters = fetchCharacters(API_ENDPOINT);
                         </div>
                         <div class="flex-grow-1">
                             <ul class="list-unstyled mb-0 small">
-                                <li class="mb-2"><strong>Espécie:</strong> <span class="species"></span></li>
-                                <li class="mb-2"><strong>Gênero:</strong> <span class="gender"></span></li>
-                                <li class="mb-2"><strong>Casa:</strong> <span class="house"></span></li>
-                                <li class="mb-2"><strong>Nascimento:</strong> <span class="date-of-birth"></span></li>
-                                <li class="mb-2"><strong>Ancestralidade:</strong> <span class="ancestry"></span></li>
-                                <li class="mb-2"><strong>Cabelo:</strong> <span class="hair-colour"></span></li>
-                                <li class="mb-2"><strong>Olhos:</strong> <span class="eye-colour"></span></li>
-                                <li class="mb-2"><strong>Varinha:</strong> <span class="wand-details"></span></li>
-                                <li><strong>Patrono:</strong> <span class="patronus"></span></li>
+                                <li class="mb-2"><strong style="color: rgb(255 222 132);">Espécie:</strong> <span style="color: rgb(248 249 250);" class=" species"></span></li>
+                                <li class="mb-2"><strong style="color: rgb(255 222 132);">Gênero:</strong> <span style="color: rgb(248 249 250);" class="gender"></span></li>
+                                <li class="mb-2"><strong style="color: rgb(255 222 132);">Casa:</strong> <span style="color: rgb(248 249 250);" class="house"></span></li>
+                                <li class="mb-2"><strong style="color: rgb(255 222 132);">Nascimento:</strong> <span style="color: rgb(248 249 250);" class="date-of-birth"></span></li>
+                                <li class="mb-2"><strong style="color: rgb(255 222 132);">Ancestralidade:</strong> <span style="color: rgb(248 249 250);" class="ancestry"></span></li>
+                                <li class="mb-2"><strong style="color: rgb(255 222 132);">Cabelo:</strong> <span style="color: rgb(248 249 250);" class="hair-colour"></span></li>
+                                <li class="mb-2"><strong style="color: rgb(255 222 132);">Olhos:</strong> <span style="color: rgb(248 249 250);" class="eye-colour"></span></li>
+                                <li class="mb-2"><strong style="color: rgb(255 222 132);">Varinha:</strong> <span style="color: rgb(248 249 250);" class="wand-details"></span></li>
+                                <li><strong style="color: rgb(255 222 132);">Patrono:</strong> <span style="color: rgb(248 249 250);" class="patronus"></span></li>
                             </ul>
                         </div>
                     </div>
